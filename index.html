@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Deploying, Scaling, and Running Grails on AWS and VPC</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+        <!--<link rel="stylesheet" type="text/css" href="fdw-demo.css" media="all" />-->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="style2.css">
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h2>Deploying, Scaling, and Running Grails on AWS and VPC</h2>
+					<h3>Learn the ropes to maximize your application's potential</h3>
+					<p>
+						<small>Created by <a href="http://rvanderwerf.blogspot.com">Ryan Vanderwerf</a> / <a href="http://twitter.com/RyanVanderwerf">@RyanVanderwerf</a></small>
+					</p>
+				</section>
+
+                <section>
+                    <h2>About Me</h2>
+                    <h3>Learn the ropes to maximize your application's potential</h3>
+                    <ul>
+                        <li>Chief Architect @ ReachForce</li>
+                        <li>Co-Chair Austin Groovy and Grails User Group</li>
+                        <li>Help maintain Grails Quartz plugin</li>
+                        <li>Maintain GVPS Plugin (Grails Video Pseudo Streamer)</li>
+                        <li>Maintain Struts-1 Plugin</li>
+                        <li>Submit pull requests for others when I can!</li>
+                    </ul>
+                </section>
+
+				<section>
+                    <ul class="text-animation-exuberant-title-top">
+                        <li><h2>What We Will Cover</h2></li>
+
+                    </ul>
+                    <!--<h2 class="text-animation">What We Will Cover</h2>-->
+
+
+                    <ul>
+                        <li class="fragment"><strong>VPC</strong></li>
+                        <li class="fragment"><strong>S3</strong></li>
+                        <li class="fragment"><strong>ElasticWolf</strong></li>
+                        <li class="fragment"><strong>Grails Plugins</strong></li>
+                        <li class="fragment"><strong>Elastic Load Balancers</strong></li>
+                        <li class="fragment"><strong>Autoscaling</strong></li>
+                        <li class="fragment"><strong>Others misc tips</strong></li>
+
+                    </ul>
+
+                    <aside class="notes">
+                        Top level overview
+                    </aside>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section>
+					<section>
+
+                        <ul class="text-animation-exuberant-title-top">
+                            <li class="fragment"><h2>VPC - Virtual Private Cloud</h2></li>
+
+                        </ul>
+
+
+                        <ul style="list-style-type: none;">
+                            <li class="fragment"><strong>Routing</strong></li>
+                            <li class="fragment"><strong>NAT</strong></li>
+                            <li class="fragment"><strong>ACL Firewall</strong></li>
+                            <li class="fragment"><strong>Suggested Subnets</strong></li>
+                            <li class="fragment"><strong>Security Groups</strong></li>
+                            <li class="fragment"><strong>DHCP Tips</strong></li>
+                            <li class="fragment"><strong>Others misc tips</strong></li>
+
+                        </ul>
+						<!--<p>
+
+							try pressing <a href="#" class="navigate-down">down</a>.
+						</p>
+						<a href="#" class="image navigate-down">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>-->
+					</section>
+					<section>
+						<h2>VPC Overview</h2>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Now required on new AWS accounts</li>
+                            <li class="fragment">Very different that EC2 'Classic' which has no private network layer</li>
+                            <li class="fragment">Costs nothing extra - you have nothing to lose</li>
+                        </UL>
+					</section>
+					<section>
+						<h2>VPC - Routing/Subnets</h2>
+                        <img src="vpc-subnet-default.png"  />
+
+					</section>
+
+					<section>
+						<h2>VPC - Routing/Subnets</h2>
+                        <img src="vpc-subnet-3rdsubnet.png"  />
+					</section>
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <h3> adding a 3rd subnet - this gives a helping hand</h3>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">auto-scaling instances can access internet through NAT</li>
+                            <li class="fragment">Web Servers, Web facing apps can live behind ELB yet be able to run OS updates </li>
+                            <li class="fragment">S3 Buckets accessible</li>
+                            <li class="fragment">can access your secure subnet as well</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <img src="vpc-overview-big-3rdsubnet.png"  />
+
+                    </section>
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <img src="aws-screenshot-console-subnet.png"  />
+
+                    </section>
+
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <img src="aws-vpc-screenshot-console-subnet-details.png"  />
+
+                    </section>
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <img src="aws-vpc-console-route-table.png"  />
+
+                    </section>
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <h3>Security ACLs</h3>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">ACLs like a full firewall - unlike groups</li>
+                            <li class="fragment">Protect subnets instead of EC2 instances</li>
+                            <li class="fragment">Processed in order of rule #</li>
+                            <li class="fragment">ACLs are stateless - responses to inbound bound by outbound rules</li>
+                            <li class="fragment">To accommodate  various clients and OSs open ephemeral ports 1024-65535 then block malicous ports</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <h3>Security Groups</h3>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment roll-in">VPC Security Groups are different than EC2 Groups - use different and descriptive names if both used</li>
+                            <li class="fragment">You can use a security group ID (starting with sgXXXXX) in blace </li>
+                            <li class="fragment">Pro cessed in order of rule #</li>
+                            <li class="fragment">ACLs are stateless - responses to inbound bound by outbound rules</li>
+                            <li class="fragment">To accommodate  various clients and OSs open ephemeral ports 1024-65535 then block malicous ports</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Routing/Subnets</h2>
+                        <h3>DHCP Options</h3>
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Determine What DNS DHCP clients use</li>
+                            <li class="fragment">Can things like default domain, whether to use internal or external DNS for your VPC</li>
+                            <li class="fragment">From Web UI, assign only 1 option set at a time</li>
+                            <li class="fragment">Using amazon provided DNS, using naming scheme of 10.0.1.x, default domain ec2.internal</li>
+                            <li class="fragment">Can assign your own DNS server names, or even Netbios name servers or NTP servers</li>
+                            <li class="fragment">Options are semicolor delimited name value pairs, i.e. 'domain-name=something.com; domain-name-severs=AmazonProvidedDNSs</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - IAM Roles</h2>
+
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Don't use root account anymore. Traditional security page will be retired</li>
+                            <li class="fragment">Set up your IAM roles for each user and use designated login url they give you</li>
+                            <li class="fragment">Use new resource level security with IAM to tier access to instances/resources</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Misc EC2 Tips</h2>
+
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Reboot != Reboot</li>
+                            <li class="fragment">Rebooting a machine from console will keep instance in place and ephemeral storage</li>
+                            <li class="fragment">If you issue an OS reboot or a 'stop' command you machine will move and lose ephemeral state</li>
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Misc EC2 Tips</h2>
+
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">VPN</li>
+                            <li class="fragment">Use OpenVPN instead of metered AWS VPN - it runs fine on a tiny instance- save $$</li>
+                            <li class="fragment">Use OpenVPN client to leave remote servers connected to VPC - it auto-reconnects</li>
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Misc EC2 Tips</h2>
+
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">Load Balancer</li>
+                            <li class="fragment">60s timeout on idle max - can file ticket for extension to 15+ minutes</li>
+                            <li class="fragment">Use Haproxy for anything very advanced, can accommodate many options</li>
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>VPC - Misc EC2 Tips</h2>
+
+                        <UL style="list-style-type: none;">
+                            <li class="fragment">EBS Based Instances</li>
+                            <li class="fragment">Use EBS backed instances for anything not build for cloud</li>
+                            <li class="fragment">If you can build server on the fly with Chef/Puppet like tools, go for ephemeral based</li>
+                            <li class="fragment">EBS backed instances have no swap by default - be sure to specify ephemeral disks on launch, use as swap</li>
+                            <li class="fragment">EBS backed instances have no ephemeral disks on by default be sure to use them on launch of instance and AMIs</li>
+                        </UL>
+                    </section>
+                </section>
+                <section>
+				    <section>
+					<h2>S3 Storage</h2>
+
+                    <UL style="list-style-type: none;">
+                        <li class="fragment">Limitations</li>
+                        <li class="fragment">Common tools</li>
+                        <li class="fragment">Regions with different functionality</li>
+                        <li class="fragment">Glacier</li>
+                        <li class="fragment">Grails S3 Plugin</li>
+                    </UL>
+                    </section>
+                    <section>
+                        <h2>S3 Storage</h2>
+
+                        <UL style="list-style-type: none;">
+                            <h3>Limitations - Eventual Consistency</h3>
+                            <li class="fragment">This means after write/update it will EVENTUALLY be consistent</li>
+                            <li class="fragment">Make your app retry on read fail - it might not be synced yet</li>
+                            <li class="fragment">Different regions have different consistency rules</li>
+                            <li class="fragment">US-West and EU Buckets have read after write consistency - but not update or delete (and cost more)</li>
+                            <li class="fragment">US-East is so large it cannot handle any kind of consistency after write/update/delete - except patience!</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>S3 Storage</h2>
+
+                        <UL style="list-style-type: none;">
+                            <h3>Limitations - large files</h3>
+                            <li class="fragment">Files over 5GB supported, but most tools don't handle properly</li>
+                            <li class="fragment">S3 Tools must support mime/multipart</li>
+                            <li class="fragment">s3cmd(Linux) / CyberDuck 4(Mac/Win32) / S3 Browser(Win32) / Cloudberry Explorer(PRO Win32) / Bucket Explorer</li>
+                            <li class="fragment">File > 5GB files work with these tools, it is EXTREMELY slow</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>S3 Storage</h2>
+
+                        <UL style="list-style-type: none;">
+                            <h3>Tools</h3>
+                            <li class="fragment">s3fs - mount as filesystem - but >5GB files broken, beware of consistency!</li>
+                            <li class="fragment">Make sure FUSE is in kernel</li>
+                            <li class="fragment">s3cmd is best free command line tools</li>
+                            <li class="fragment">Bucket Explorer & CloudBerry Backup are good solid windows clients that parallelize multi-part uploads to ease the pain</li>
+                            <li class="fragment">s3 Browser is ok free tool</li>
+                            <li class="fragment">For install on Ubuntu: http://zentraal.com/docs/installing-s3fs-on-ubuntu/</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>S3 Storage</h2>
+
+                        <UL style="list-style-type: none;">
+                            <h3>Different Function Between Different Regions</h3>
+                            <li class="fragment">US-East-1 Cheapest for full redundancy otherwise to save $ you can use RRS (Or Glacier)
+                            <li class="fragment">US-West and EU Buckets have read after write consistency - but not update or delete (and cost more)</li>
+                            <li class="fragment">US-East is so large it cannot handle any kind of consistency after write/update/delete - except patience!</li>
+                            <li class="fragment">Barring these limitations (and budget!), use the region closed to your VPC instances and regions</li>
+                        </UL>
+                    </section>
+
+                    <section>
+                        <h2>S3 Storage</h2>
+                        <h2>Grails S3 Plugin</h2>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Looks unmaintained, but still works fine on latest Grails versions (no JIRA bugs pending!)
+                            <li class="fragment">Delete Buckets (See <a href="file://">org.grails.s3.BucketService</a>)</li>
+                            <li class="fragment">Uploads and catalogs assets (will use bucket name you give as base for its bucket name)</li>
+                            <li class="fragment">Names files inside bucket with UUIDs to avoid collisions</li>
+                            <li class="fragment">Can give each asset a bucket and key pair or global</li>
+                            <li class="fragment">Demo - s3-demo project</li>
+                        </UL>
+                    </section>
+				</section>
+                <section>
+                    <section>
+                        <h2>General AWS Grails Plugins</h2>
+
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Grails AWS Plugin</li>
+                            <li class="fragment">AWS SDK Plugin</li>
+                            <li class="fragment">DynamoDB GORM Plugin - not covered</li>
+                            <li class="fragment">Amazon Flexible Payments - not covered</li>
+                            <li class="fragment">SimpleDB GORM Plugin - not convered</li>
+                        </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>Actual Groovy/Grails Code to Manage S3 storage and SES Service (vs Java wrapper)</h3>
+
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>Has handy Gant scripts installed - used for SES stats</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Aws-Ses-Get-Send-Quota</li>
+                                <li class="fragment">Aws-Sws-Get-Send-Statistics</li>
+                                <li class="fragment">Aws-Ses-List-Verified-Emails</li>
+                                <li class="fragment">Aws-Ses-Send-Ping-Mail</li>
+                                <li class="fragment">Aws-Ses-Verify-Email</li>
+                            </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>Aws-Ses-Get-Send-Quota</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Gets your current Quota for Simple Email Service</li>
+                                <li class="fragment">Shows email limit per day, per second, # of emails </li>
+                                <li class="fragment">Output looks like this:<br/>
+                                    <p>
+                                        [AWS SES] The maximum number of emails the user is allowed to send in a 24-hour interval: 10000.0<br/>
+                                        [AWS SES] The maximum number of emails the user is allowed to send per second: 5.0               <br/>
+                                        [AWS SES] The number of emails sent during the previous 24 hours: 15.0                           <br/>
+                                    </p>
+
+
+                                </li>
+                            </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>Aws-Sws-Get-Send-Statistics</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Gets your email sending statistics</li>
+                                <li class="fragment">The output is a list of items, for the last two weeks of sending activity.</li>
+                                <li class="fragment">Example output:
+                                    <p>
+                                        [AWS SES]  -------------------------------------------------------------------------------
+                                        <br/>[AWS SES] |    time range    | attemps | rejects (SES) | complaints (recipient) | bounces |
+                                        <br/>[AWS SES] |-------------------------------------------------------------------------------|
+                                        <br/>[AWS SES] | 2013/06/26 22:42 |    1    |       0       |           0            |    0    |
+
+                                    </p>
+                                </li>
+                            </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>aws-ses-list-verified-emails</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Shows a list of all verified emails with</li>
+                                <li class="fragment">The output is a list of emails authorized to send email FROM</li>
+                                <li class="fragment">Example output:
+                                    <p>
+                                        [AWS SES] 1) support@reachforce.com
+
+                                    </p>
+                                </li>
+                            </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>aws-ses-send-ping-mail</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Script will verify a given email has been 'verified' by Amazon</li>
+
+                            </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>aws-ses-verify-email</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Script will submit an email for verification to amazon, and send an email to that address</li>
+
+                            </UL>
+                        </section>
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>aws-ses-verify-email</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Script will submit an email for verification to amazon, and send an email to that address</li>
+
+                            </UL>
+                        </section>
+
+                        <section>
+                            <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                            <h3>S3 File Management</h3>
+                            <UL style="list-style-type: none;">
+
+                                <li class="fragment">Demo</li>
+
+                            </UL>
+                        </section>
+
+                      <section>
+                        <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                        <h3>S3 File Management</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Handy for storing existing assets into S3</li>
+                            <li class="fragment">
+                                <i>Convert local File to S3 Storage</i><br>
+                                def s3file = new File("/tmp/test.txt").s3upload {
+                            path "folder/to/my/file/"
+                            }
+
+                            </li>
+                            <li class="fragment">
+                                <i>Upload directly from Stream</i>:<br>
+                                def file = request.getFile('photo')
+                                def uploadedFile = file.inputStream.s3upload(file.originalFilename) {
+                                bucket "file-upload-from-inputstream"
+                                }
+                            </li>
+
+                        </UL>
+                     </section>
+
+                    <section>
+                        <h2>General AWS Grails Plugins - Grails AWS Plugin</h2>
+
+                        <h3>SES Management</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">AFAIK skip this - the mail plugin handles all of this</li>
+                            <li class="fragment">
+                                // settings for mail plugin to work with SES
+                                grails {
+                                mail {
+                                host = "email-smtp.us-east-1.amazonaws.com"
+                                port = 25
+                                username = "SESUsername"
+                                password = "SESPassword"
+                                props = ["mail.smtp.starttls.enable":"true",
+                                "mail.smtp.port":"587","mail.debug":"true","mail.smtp.auth":"true"]
+                                // uncomment to force all emails to one address
+                                // grails.mail.overrideAddress="test@address.com"
+                                grails.mail.default.from = "support@reachforce.com"
+                                }
+                                }
+
+                            </li>
+
+                        </UL>
+                    </section>
+
+
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Wrapper for AWS Java SDK</li>
+                            <li class="fragment">
+                                This is the one to use for most powerful work of services - can access almost all of AWS services that JDK supports
+
+                            </li>
+                            <li>Uses AWS Web Service API wrapped in a Java Library</li>
+                            <li>Error handing can be more difficult than using web service api directly</li>
+
+
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>Services Supported</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">EC2 - ELB,CloudWatch, Elastic Beanstalk</li>
+                            <li class="fragment">RDS - Elastic Mapreduce, SDB, Dynamo, Redshift, SimpleDB</li>
+                            <li class="fragment">S3/Glacier</li>
+                            <li class="fragment">SES (us-east-1 only)</li>
+                            <li class="fragment">SQS, SWF</li>
+                            <li class="fragment">CloudFormation,CloudFront</li>
+                            <li class="fragment">Elastic Beanstalk, Transcoder, Opsworks(Old Chef) </li>
+                            <li class="fragment">Cloudformation, CloudSearch, Elasticache </li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>EC2</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Grails service wrapper is 'amazonWebService'</li>
+                            <li class="fragment">Call amazonWebService.ec2. - for default region, call amazonWebService.getEc2('region'). for others</li>
+                            <li class="fragment">RunInstancesRequest class defines parameters to launch an instance (It seems picky about nulls)</li>
+                            <li class="fragment">use amazonWebService.runInstances() to start instances</li>
+                            <li class="fragment">Complete docs at: http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/</li>
+
+                        </UL>
+                    </section>
+
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>RDS</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Not sure why you would spin up entire databases, but you can!</li>
+                            <li class="fragment">Most practical use would be to automate snapshots of the database</li>
+                            <li class="fragment">If you have a small simple database, service is good</li>
+                            <li class="fragment">Cannot start/top RDS instances, and pay premium to use their licenses if using commercial DBs</li>
+                            <li class="fragment">If you have the skill or have large DB requirements, set up your own database - there is probably an AMI for it </li>
+                            <li class="fragment">Has good multi-az failover (but pricey!) with PIOPS EBS Volumes (You can raid your own PIOPS drives!)</li>
+                        </UL>
+                    </section>
+
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>S3</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">manage buckets, upload/download and delete files</li>
+                            <li class="fragment">Transfer Manager - handles multipart uploads (big files, batch, fast!)</li>
+                            <li class="fragment">full docs here: http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/package-summary.html</li>
+                            <li class="fragment">s3browser demo</li>
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>Glacier</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">cold storage for data - not immediately available on demand</li>
+                            <li class="fragment">vaults - organize your archives and policies (where your files go)</li>
+                            <li class="fragment">Upload files via amazonWebService.glacier.uploadArchive(UploadArchiveRequest uploadArchiveRequest) or UploadMultiPart </li>
+                            <li class="fragment">Files are retrieved via 'initiateJob'</li>
+                            <li class="fragment">Call 'listJobs' until your job is done.</li>
+                            <li class="fragment">Can use Amazon SNS to notify you when jobs are complete</li>
+                            <li class="fragment">When done get files from your vault via GetJobOutput</li>
+
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>Glacier</h3>
+                        <img src="./aws-glacier.png"/>
+                    </section>
+                    <section>
+                        <h2>General AWS Grails Plugins - AWS SDK Plugin</h2>
+
+
+                        <h3>SQS</h3>
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Simple queue service</li>
+                            <li class="fragment">Create / Delete Queues</li>
+                            <li class="fragment">Receive Message</li>
+                            <li class="fragment">Can also assign permissions and batch messages</li>
+                            <li class="fragment">Messages can remain in queue for 12 hours</li>
+
+
+                        </UL>
+                    </section>
+                </section>
+
+                <section>
+				<section>
+                    <h2>ElasticWolf</h2>
+
+                    <UL style="list-style-type: none;">
+
+                        <li class="fragment">More powerful than web console gui</li>
+                        <li class="fragment">Can control things like auto-scaling</li>
+                        <li class="fragment">Created partly for new GovCloud because they had no UI at all initially</li>
+                        <li class="fragment">Managed by sales organization instead of IT</li>
+                        <li class="fragment">Actively Maintained on Github</li>
+
+
+                    </UL>
+				</section>
+                    <section>
+                        <h2>ElasticWolf</h2>
+
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Demo</li>
+
+
+
+                        </UL>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Autoscaling Overview</h2>
+
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Autoscaling can be used for fault-tolernance (min 1)</li>
+                            <li class="fragment">Most efficient user of instance</li>
+                            <li class="fragment">Set Policies using templates for how more servers created/terminated</li>
+                            <li class="fragment">Control Spot instance bit price</li>
+                            <li class="fragment">You app must be able to handle 'sudden death'</li>
+                            <li class="fragment">Make sure your debug your AMI BEFORE adding to a autoscale group (debugging failed autoscaled instances is no way to go through life son!) </li>
+
+                        </UL>
+                    </section>
+                    <section>
+                        <h2>Autoscaling Setup</h2>
+
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Step 1: Create Launch Config(Just like launching instance but a template)</li>
+                            <li class="fragment">Step 2: Create Autoscale Group</li>
+                            <li class="fragment">Step 3: Create Policies</li>
+                            <li class="fragment">Demo with ElasticWolf</li>
+
+
+                        </UL>
+                    </section>
+
+                    <section>
+                        <h2>Elastic Beanstalk</h2>
+
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Bobby Warner's Blog: http://www.bobbywarner.com/2011/10/14/grails-on-aws/</li>
+                            <li class="fragment">Elastic Beantalk in 3 simple steps: http://malderhout.wordpress.com/2011/02/18/deploy-grails-apps-in-3-simple-steps-to-amazon-beanstalk</li>
+
+
+
+                        </UL>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Useful resources</h2>
+
+                        <UL style="list-style-type: none;">
+
+                            <li class="fragment">Elastic Beanstalk Intro @ Bobby Warner's Blog: http://www.bobbywarner.com/2011/10/14/grails-on-aws/</li>
+                            <li class="fragment">Another Beanstalk: http://malderhout.wordpress.com/2011/02/18/deploy-grails-apps-in-3-simple-steps-to-amazon-beanstalk/</li>
+                            <li class="fragment">Sample Beanstalk app: https://github.com/4np/grailsOnAWS</li>
+                            <li class="fragment">Oracle, EBS, and other Tips from AWS Architect Tom Laszewski http://cloudconclave.blogspot.com/</li>
+                            <li class="fragment">Building an S3 Browser in Grails http://aws.amazon.com/articles/Amazon-S3/4000</li>
+
+                        </UL>
+                    </section>
+
+                </section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
