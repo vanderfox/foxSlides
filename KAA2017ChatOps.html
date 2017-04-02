@@ -1,0 +1,1303 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>ChatOps:  It's Not Just for Your Operations Team</title>
+
+    <meta name="description" content="DevOps Monitoring:  Finding the Signal in the Noise">
+    <meta name="author" content="Lee Fox">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/chatops.css">
+    <link rel="stylesheet" href="css/theme/fox.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if( window.location.search.match( /print-pdf/gi ) ) {
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+    <section data-background-image="images/foxShadow.png">
+        <h1>ChatOps:</h1>
+        <h2>It's Not Just for Your Operations Team</h2>
+        <h4>Lee Fox</h4>
+
+
+        <p>
+            <small><a href="http://twitter.com/FoxInATX">@FoxInATX</a></small>
+        </p>
+
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <h2>About Lee </h2>
+
+        <ul>
+            <li>Cloud Architect at Infor</li>
+            <li>Promising Solutions Architect candidate with Amazon</li>
+            <li>Past Technology Chair of Agile Austin</li>
+            <li>Co-Author of Effective Gradle Implementation Video Series on Packt</li>
+            <li>Trained Innovation Games Facilitator</li>
+            <li>Alexa and Google Home Developer</li>
+            <li>Amateur Chef</li>
+
+        </ul>
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <h2>What we will cover</h2>
+        <ul>
+            <li>What is ChatOps?</li>
+            <li class="fragment">General Uses</li>
+            <li class="fragment">Developer Uses</li>
+            <li class="fragment">QA Uses</li>
+            <li class="fragment">Other Groups</li>
+            <li class="fragment">Agile Uses</li>
+            <li class="fragment">Implementation</li>
+        </ul>
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <section>
+            <h2>What is ChatOps?</h2>
+
+            <ul>
+                <li>Leveraging chat software to support work flows</li>
+                <li>Communicating with coworkers as well as the environment</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Why ChatOps?</h2>
+
+            <ul>
+                <li>Increased understanding</li>
+                <li>Maintain history</li>
+                <li>Increased collaboration</li>
+                <li>Increased awareness</li>
+                <li>Lower costs</li>
+                <li>Increased Quality</li>
+                <li>Repeatility</li>
+                <li>Teach by doing</li>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>ChatOps Example</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/hulk.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Bruce Banner</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday list cloudformation templates</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    The following CloudFormation stacks are running:<br>
+                                    In <strong>US-EAST-1</strong> (North Virginia):<br>
+                                    <ol>
+                                        <li>prod-quitjet-apps</li>
+                                        <li>prod-quitjet-base</li>
+                                    </ol>
+                                    <br>
+                                    In <strong>US-WEST-2</strong> (Oregon):<br>
+                                    <ol>
+                                        <li>prod-quitjet-apps</li>
+                                        <li>prod-quitjet-base</li>
+                                        <li>prod-quitjet-turbo</li>
+                                    </ol>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>ChatOps Example</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/hulk.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Bruce Banner</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday create vpn certificate user=lfox email=leehfox@mail.com</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Sure thing.  I'll do that right away.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:15 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    I've created a VPN certificate for <strong>lfox</strong> and I've emailed it to <em>leehfox@gmail.com</em>.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <section>
+            <h2>General Uses</h2>
+
+        </section>
+
+        <section>
+            <h2>Cat pictures</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/blackWidow.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Natasha Romanoff</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday show me a cat picture</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Look at this cute cat!<br><img src="images/cuteCat.jpg"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Dog pictures</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/blackWidow.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Natasha Romanoff</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday show me a dog picture</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Look at this cute dog!<br><img src="images/cuteDog.jpg"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Jedi Code</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/ironMan.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Tony Stark</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday jedi code</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    There is no emotion, there is peace.<br>
+                                    There is no ignorance, there is knowledge.<br>
+                                    There is no passion, there is serenity.<br>
+                                    There is no chaos, there is harmony.<br>
+                                    There is no death, there is the Force.<br>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>More Star Wars Fun</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/blackWidow.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Natasha Romanoff</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday execute order 66</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Yes, my lord.  Now, where can I find a Jedi?
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/ironMan.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Tony Stark</span> <span class="chatTime">2:10 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday execute order 66</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:10 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    I would love to, but I am not a Stormtrooper.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Something funny</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/blackWidow.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Natasha Romanoff</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday daily dilbert</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Here is today's daily Dilbert:<br><img src="images/dilbertCloud.png"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <section>
+            <h2>Developer Uses</h2>
+
+        </section>
+
+        <section>
+            <h2>Build code</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/blackWidow.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Natasha Romanoff</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday build app=quinjet branch=master</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Sure thing.  I'm starting a build on master for quinjet right now.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/ironMan.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Tony Stark</span> <span class="chatTime">2:10 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Is that for AVENGERS-209?</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/blackWidow.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Natasha Romanoff</span> <span class="chatTime">2:10 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Yes.  QA needed a build immediately and couldn't wait for the automated build.  So, I kicked one off.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/ironMan.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Tony Stark</span> <span class="chatTime">2:11 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Ahhh.  Cool.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:20 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Build complete.  Please go to <a href="">http://bamboo.avengers.com/browse/quinjet4122</a> to see test results and download the build.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Code reviews</h2>
+            <table class="chatops">
+                <tbody>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Bruce Banner I see that you have <strong><font color="red">3</font></strong> outstanding code review(s).  Please find them on the following Jira tickets:
+                                    <ul>
+                                        <li><a href="">AVENGERS-207</a></li>
+                                        <li><a href="">AVENGERS-208</a></li>
+                                        <li><a href="">AVENGERS-215</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/ironMan.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Tony Stark</span> <span class="chatTime">2:09 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Dude.  Really?</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/hulk.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Bruce Banner</span> <span class="chatTime">2:09 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Yes.  Remember how I spent all last week helping you close that ticket for fixing the gamma ray detector?</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/ironMan.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Tony Stark</span> <span class="chatTime">2:11 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Oh, yeah.  I forgot about that.  I guess I ought to help lighten your load for that then.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/ironMan.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Tony Stark</span> <span class="chatTime">2:11 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday assign me the code review for AVENGERS-207</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:12 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Tony Stark is now responsible for the code review on <a href="">AVENGERS-207</a>.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Deploy code</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/blackWidow.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Natasha Romanoff</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday deploy app=quinjet env=qa1 version=latest</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>I'm on it.  Deploying quinjet to qa1.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/ironMan.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Tony Stark</span> <span class="chatTime">2:09 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Is that for AVENGERS-209</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/blackWidow.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Natasha Romanoff</span> <span class="chatTime">2:10 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Yes.  It's got the latest software on it for detecting rogue Stark technology.  Can you look at it, please?</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/ironMan.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Tony Stark</span> <span class="chatTime">2:11 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Sure thing.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:15 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>I have finished deploying quinjet to qa1.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Deploying code</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/hulk.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Bruce Banner</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Hey!  I have a hotfix for that production issue!</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/hulk.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Bruce Banner</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday deploy app=quinjet env=prod version=5.2.1.1</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:09 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>I'm sorry, but you need approval from operations to deploy to production.  Request=18AZ231A1</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/nickFury.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Nick Fury</span> <span class="chatTime">2:12 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday approve request=18AZ231A1</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:12 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">Bruce Banner</a>, Nick Fury has approved.  Deploying quinjet to prod.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Check deployments</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/blackWidow.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Natasha Romanoff</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Does anyone know what is deployed to dev1?</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Bruce Banner deployed Quinjet 5.2.1.1 Build #102 to dev1 on 04/02/2017 at 12:47 P.M.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Sprint work</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/hulk.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Bruce Banner</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday give me my next ticket</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">Bruce Banner</a>, the next ticket up for grabs is <a href="">AVENGERS-224</a>.  I have assigned it to you.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Keeping abreast of news</h2>
+            <table class="chatops">
+                <tbody>
+                <tr>
+                    <td class="imageCell">
+                        <img class="avatar" src="images/rssIcon.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Ansible Blog</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td><a href="">Patching BADLOCK with Ansible</a><br>
+                                    If you've been following recent security news, you may have heard of the Badlock vulnerability in the protocols used by the Microsoft Windows Active Directory infrastructure. This vulnerability could lead to a man-in-the-middle attacker intercepting traffic between a client and the Active Directory server, and then impersonating...
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/ironMan.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Tony Stark</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Hey <a href="">Bruce Banner</a>!  What do you think of that?</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/hulk.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Bruce Banner</span> <span class="chatTime">2:10 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>That's awesome.  It's exactly what I've been looking for to address badlock.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <section>
+            <h2>QA Uses</h2>
+
+        </section>
+
+        <section>
+            <h2>Run tests</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/hulk.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Bruce Banner</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday run regression tests app=quinjet version=latest</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>I can do that.  Running regression tests on quinjet now.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>I've run regression tests on quinjet.  There were <strong>7</strong> test failure(s).  You can find more information at <a href="">http://bamboo.avengers.com/quinjet/latest</a></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <section>
+            <h2>Other Groups</h2>
+
+        </section>
+
+        <section>
+            <h2>Human Resources</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/ironMan.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Tony Stark</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday How much PTO do I have left?</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    You can find out how much PTO you have left on our <a href="">company HR portal</a>.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>Human Resources</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/hulk.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Bruce Banner</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday How do I file an expense report?</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday D. Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    You can file an expense report in <a href="">XYZ financial application</a>.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <section>
+            <h2>Agile Uses</h2>
+
+        </section>
+
+        <section>
+            <h2>Schedule a retro</h2>
+
+        </section>
+
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <section>
+            <h2>ChatOps Adoption Strategies</h2>
+
+        </section>
+
+        <section>
+            <h2>Make It Fun</h2>
+
+        </section>
+
+        <section>
+            <h2>Make It Pertinent</h2>
+
+        </section>
+
+        <section>
+            <h2>Find Repetition</h2>
+            <ul>
+                <li>What tasks do you perform time and again?</li>
+                <li>What questions do you ask over and over?</li>
+                <li>Are there things you say everyday at a given time?</li>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>Laziness Doesn't Hurt</h2>
+            <img src="images/lazyPerson.jpg">
+        </section>
+
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <section>
+            <h2>Implementation</h2>
+
+        </section>
+
+        <section>
+            <h2>Chat Client</h2>
+            <ul>
+                <li>Slack</li>
+                <li>HipChat</li>
+                <li>Campfire</li>
+                <li>IRC</li>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>Hosted Implementation</h2>
+
+        </section>
+
+        <section>
+            <h2>Bot Server</h2>
+
+            <ul>
+                <li>Hubot</li>
+                <li>ErrBot</li>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>Serverless implementation</h2>
+
+        </section>
+
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+
+        <section>
+            <h2>ChatOps Source Links</h2>
+
+            <ul>
+                <li>https://victorops.com/chatops-for-dummies/</li>
+                <li>https://www.pagerduty.com/blog/what-is-chatops/</li>
+                <li>https://www.vividcortex.com/blog/8-reasons-why-chatops-isnt-working-at-your-company</li>
+                <li>http://blog.flowdock.com/2014/11/11/chatops-devops-with-hubot/</li>
+                <li>https://blog.newrelic.com/2015/08/18/chatops/</li>
+                <li>https://www.box.com/blog/securing-chatops-enable-devops/</li>
+                <li>https://victorops.com/blog/getting-started-chatops-step-step-guide/</li>
+                <li>https://speakerdeck.com/jnewland/chatops-at-github</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Other Source Links</h2>
+
+            <ul>
+                <li>https://www.psychologytoday.com/blog/brain-wise/201209/the-true-cost-multi-tasking</li>
+                <li>http://fooplugins.com/slack-team-communication-tool/</li>
+            </ul>
+        </section>
+
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <h1>Any questions?  <img src="images/foxQuestion.jpg" style="width:30%; background:none; border:none; box-shadow:none;"/>
+        </h1>
+        <h3>I hope you have enjoyed the session!</h3>
+        <p>Email:  lee.h.fox@gmail.com</p>
+        <p>Twitter:  @FoxInATX</p>
+    </section>
+
+
+
+</div>
+
+</div>
+<div id="myLogo" style="background: url('presentation-16-9-following-gr8confus2016.png');
+                        position: absolute;
+                        bottom: 0px;
+                        right: 0px;
+                        width: 1910px;
+                        height: 1080px;"></div>
+</div>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'cube', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
