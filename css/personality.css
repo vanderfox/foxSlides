@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+td.johari
+{
+    outline: thick solid white;
+    height:  250px;
+    width:  250px;
+}
