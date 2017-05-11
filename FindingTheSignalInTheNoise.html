@@ -43,7 +43,7 @@
 <!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
     <section data-background-image="images/foxShadow.png">
-        <h3>Finding the Signal in the Noise</h3>
+        <h3>Monitoring:  Finding your story</h3>
         <h4>Lee Fox</h4>
 
 
@@ -105,47 +105,77 @@
     <section data-background-image="images/foxShadow.png">
         <section>
             <h2>Today's problems monitoring</h2>
-
+            <img src="images/stage1.png">
+            <br>
             <ul>
-                <li>6 hosts (3 presentation, 2 middleware, 1 database)</li>
-                <li>10 metrics per host</li>
-                <li>60 metrics</li>
-                <li>60 metrics per hour each hour</li>
-                <li>3600 metrics per hour each minute</li>
-                <li>216000 metrics per hour each second</li>
+                <li>CPU, Memory, and Disk</li>
+                <li>3 metrics</li>
             </ul>
         </section>
 
-    </section>
-
-    <section data-background-image="images/foxShadow.png">
         <section>
-            <h2>Story Paradigm</h2>
-
+            <h2>Today's problems monitoring</h2>
+            <img src="images/stage2.png">
+            <br>
+            <ul>
+                <li>Three tiered systems</li>
+                <li>3 metrics * 3 tiers = 9 metrics</li>
+            </ul>
         </section>
-    </section>
 
-    <section data-background-image="images/foxShadow.png">
         <section>
-            <h2>Break down the metrics</h2>
+            <h2>Today's problems monitoring</h2>
+            <img src="images/stage3.png">
+            <br>
+            <ul>
+                <li>We scaled!</li>
+                <li>3 metrics * 6 VMs = 18 metrics</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Today's problems monitoring</h2>
+            <img src="images/stage4.png">
+            <br>
+            <ul>
+                <li>Added Docker containers</li>
+                <li>3 metrics * 24 Containers and VMs = 72 metrics</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Today's problems monitoring</h2>
 
             <ul>
-                <li>Work Metrics</li>
-                <li>Resource Metrics</li>
-                <li>Events</li>
+                <li class="fragment">Per hour:  1,728 Metrics
+                    <ul>
+                        <li>72 metrics * 24 hours</li>
+                    </ul>
+                </li>
+                <li class="fragment">Per minute:  103,680 Metrics
+                    <ul>
+                        <li>72 metrics * 24 hours * 60 minutes</li>
+                    </ul>
+                </li>
+                <li class="fragment">Per second:  6,220,800 Metrics
+                    <ul>
+                        <li>72 metrics * 24 hours * 60 minutes * 60 seconds</li>
+                    </ul>
+                </li>
             </ul>
-
-        </section>
-    </section>
-
-    <section data-background-image="images/foxShadow.png">
-        <section>
-            <h2>Monitoring</h2>
-
         </section>
 
         <section>
-            <h2>Find your story</h2>
+            <h2>Today's problems monitoring</h2>
+
+            <center><font size="+4>">All of this means nothing.</font></center>
+
+        </section>
+
+        <section>
+            <h2>Today's problems monitoring</h2>
+
+            <center><font size="+4>">Modern applications could easily generate 10+ million data points a day.</font></center>
 
         </section>
 
@@ -164,16 +194,29 @@
 
         <section>
             <h2>Monitoring</h2>
+            <ul>
+                <li>Simply keeping a watch on your application or system</li>
+                <li>Watching for metrics</li>
+                <li>Watching for events</li>
+            </ul>
 
         </section>
 
         <section>
             <h2>Alerting</h2>
+            <ul>
+                <li>Sending some notification when a threshhold has been met.</li>
+                <li>Can't have alerting without monitoring</li>
+            </ul>
 
         </section>
 
         <section>
             <h2>Paging</h2>
+            <ul>
+                <li>Actually notifying someone in person when an alert is generated</li>
+                <li>Can't have paging without alerting</li>
+            </ul>
 
         </section>
 
@@ -181,7 +224,48 @@
 
     <section data-background-image="images/foxShadow.png">
         <section>
-            <h2>Systems Monitoring</h2>
+            <h2>Break down the metrics</h2>
+
+            <ul>
+                <li>Work Metrics</li>
+                <li>Resource Metrics</li>
+                <li>Events</li>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>Work metrics</h2>
+
+            <ul>
+                <li>Throughput</li>
+                <li>Errors</li>
+                <li>Efficiency</li>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>Resource metrics</h2>
+
+            <ul>
+                <li>CPU Utilization</li>
+                <li>Memory Utilization</li>
+                <li>Disk Space</li>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>Events</h2>
+
+            <ul>
+                <li>Scale up/Scale down</li>
+                <li>Login/Logout</li>
+                <li>Software deployments</li>
+                <li>Start of day/End of day</li>
+                <li>Backup running</li>
+            </ul>
 
         </section>
 
@@ -189,16 +273,39 @@
 
     <section data-background-image="images/foxShadow.png">
         <section>
-            <h2>Applications Monitoring</h2>
+            <h2>Find your story</h2>
 
         </section>
 
-    </section>
-
-    <section data-background-image="images/foxShadow.png">
         <section>
-            <h2>Process Monitoring</h2>
+            <h2>Build a story</h2>
 
+            <ul>
+                <li>Metrics convey meaning</li>
+                <li>One thing at a time</li>
+                <li>More details mean a richer story</li>
+                <li>Draw meaning from your story</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Developer metrics</h2>
+
+            <ul>
+                <li>Your test coverage goes up</li>
+                <li>Number of lines of code goes down</li>
+                <li>Possible stories:  Cruft removed.  Duplication removed.</li>
+                <li>Unlikely stories:  People are adding unit tests.  </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Stories have perspective</h2>
+
+            <ul>
+                <li>There are two sides to each story</li>
+                <li>Find new perspective</li>
+            </ul>
         </section>
 
     </section>
@@ -209,18 +316,23 @@
 
         </section>
 
+        <section>
+            <ul>
+                <li>Splunk, DataDog</li>
+                <li>ELK, Graylog</li>
+                <li>Log4J</li>
+                <li>Jira, VersionOne, Rally</li>
+            </ul>
+
+        </section>
+
     </section>
 
     <section data-background-image="images/foxShadow.png">
         <h2>Source Links</h2>
 
         <ul>
-            <li>Grails 3 Plugin: https://github.com/rvanderwerf/grails-alexa-skills or http://grails.org/plugins.html#plugin/alexa-skills</li>
-            <li>Twitter AWS Groovy Lambda App:  https://github.com/rvanderwerf/alexa-twitter-groovy</li>
-            <li>Twitter Grails 3 App:  https://github.com/rvanderwerf/twitterAuth</li>
-            <li>Hero Quiz Groovy Lambda App:  https://github.com/rvanderwerf/heroQuiz</li>
-            <li>Run Skills in Browser:  http://echosim.io</li>
-            <li>Amazon Developer Portal to register Skills: https://developer.amazon.com</li>
+            <li>https://www.datadoghq.com/blog/monitoring-101-collecting-data/</li>
         </ul>
     </section>
 
