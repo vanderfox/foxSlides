@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Monitoring:  Finding the Signal in the Noise</title>
+    <title>Monitoring:  Finding your story</title>
 
     <meta name="description" content="DevOps Monitoring:  Finding the Signal in the Noise">
     <meta name="author" content="Lee Fox">
@@ -59,7 +59,7 @@
     </section>
 
     <section data-background-image="images/foxShadow.png">
-        <h2>About Lee </h2>
+        <h2>About Lee</h2>
 
         <ul>
             <li>Cloud Architect at Infor</li>
@@ -70,6 +70,16 @@
             <li>Trained Innovation Games Facilitator</li>
             <li>Amateur Chef</li>
 
+        </ul>
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <h2>Housekeeping </h2>
+
+        <ul>
+            <li class="fragment">Set cell phones on stun</li>
+            <li class="fragment">Feel free to ask questions</li>
+            <li class="fragment">Deeper questions may be deferred to the end</li>
         </ul>
     </section>
 
@@ -85,8 +95,9 @@
             <h2>S.E.T.I.</h2>
 
             <ul>
-                <li>Search for Extraterrestrial Intelligence</li>
+                <li class="fragment">Search for Extraterrestrial Intelligence</li>
                 <li class="fragment">Began February 1, 1985</li>
+                <li class="fragment">Monitors electromagnetic radiation for signs of intelligent life</li>
             </ul>
         </section>
 
@@ -94,8 +105,8 @@
             <h2>Huge Problem Set</h2>
 
             <ul>
-                <li>1.0 * 10^24 stars in the universe</li>
-                <li class="fragment">Began February 1, 1985</li>
+                <li class="fragment">1.0 * 10^24 stars in the universe</li>
+                <li class="fragment">Ideally to find at least one world</li>
             </ul>
         </section>
 
@@ -175,7 +186,7 @@
         <section>
             <h2>Today's problems monitoring</h2>
 
-            <center><font size="+4>">Modern applications could easily generate 10+ million data points a day.</font></center>
+            <center><font size="+4>">Modern applications could easily generate 10+ million metrics a day.</font></center>
 
         </section>
 
@@ -186,18 +197,18 @@
             <h2>Some Vocabulary</h2>
 
             <ul>
-                <li>Monitoring</li>
-                <li>Alerting</li>
-                <li>Notifications</li>
+                <li class="fragment">Monitoring</li>
+                <li class="fragment">Alerting</li>
+                <li class="fragment">Paging</li>
             </ul>
         </section>
 
         <section>
             <h2>Monitoring</h2>
             <ul>
-                <li>Simply keeping a watch on your application or system</li>
-                <li>Watching for metrics</li>
-                <li>Watching for events</li>
+                <li class="fragment">Simply keeping a watch on your application or system</li>
+                <li class="fragment">Watching for metrics</li>
+                <li class="fragment">Watching for events</li>
             </ul>
 
         </section>
@@ -205,8 +216,8 @@
         <section>
             <h2>Alerting</h2>
             <ul>
-                <li>Sending some notification when a threshhold has been met.</li>
-                <li>Can't have alerting without monitoring</li>
+                <li class="fragment">Sending some notification when a threshhold has been met.</li>
+                <li class="fragment">Can't have alerting without monitoring</li>
             </ul>
 
         </section>
@@ -214,8 +225,58 @@
         <section>
             <h2>Paging</h2>
             <ul>
-                <li>Actually notifying someone in person when an alert is generated</li>
-                <li>Can't have paging without alerting</li>
+                <li class="fragment">Actually notifying someone in person when an alert is generated</li>
+                <li class="fragment">Can't have paging without alerting</li>
+            </ul>
+
+        </section>
+
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <section>
+            <h2>It's a problem</h2>
+
+            <ul>
+                <li class="fragment">Humans have a cognitive limitation for large numbers</li>
+                <li class="fragment">We can easily visualize like 5 things</li>
+                <li class="fragment">We might be able to visualize 100 things</li>
+                <li class="fragment">Beyond that, we're generally lost</li>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>How many people are here?</h2>
+
+            <img src="images/10People.jpg">
+        </section>
+
+        <section>
+            <h2>How many people are here?</h2>
+
+            <img src="images/50People.jpg">
+        </section>
+
+        <section>
+            <h2>How many people are here?</h2>
+
+            <img src="images/1000People.jpg">
+        </section>
+
+        <section>
+            <h2>How many people are here?</h2>
+
+            <img src="images/TrumpInauguration.jpg">
+        </section>
+
+        <section>
+            <h2>Monitoring tools</h2>
+
+            <ul>
+                <li class="fragment">Monitoring tools</li>
+                <li class="fragment">Visualization tools</li>
+                <li class="fragment">Doesn't necessarily help understand the data</li>
             </ul>
 
         </section>
@@ -227,9 +288,9 @@
             <h2>Break down the metrics</h2>
 
             <ul>
-                <li>Work Metrics</li>
-                <li>Resource Metrics</li>
-                <li>Events</li>
+                <li class="fragment">Work Metrics</li>
+                <li class="fragment">Resource Metrics</li>
+                <li class="fragment">Events</li>
             </ul>
 
         </section>
@@ -238,9 +299,9 @@
             <h2>Work metrics</h2>
 
             <ul>
-                <li>Throughput</li>
-                <li>Errors</li>
-                <li>Efficiency</li>
+                <li class="fragment">Throughput</li>
+                <li class="fragment">Errors</li>
+                <li class="fragment">Efficiency</li>
             </ul>
 
         </section>
@@ -249,9 +310,9 @@
             <h2>Resource metrics</h2>
 
             <ul>
-                <li>CPU Utilization</li>
-                <li>Memory Utilization</li>
-                <li>Disk Space</li>
+                <li class="fragment">CPU Utilization</li>
+                <li class="fragment">Memory Utilization</li>
+                <li class="fragment">Disk Space</li>
             </ul>
 
         </section>
@@ -260,11 +321,11 @@
             <h2>Events</h2>
 
             <ul>
-                <li>Scale up/Scale down</li>
-                <li>Login/Logout</li>
-                <li>Software deployments</li>
-                <li>Start of day/End of day</li>
-                <li>Backup running</li>
+                <li class="fragment">Scale up/Scale down</li>
+                <li class="fragment">Login/Logout</li>
+                <li class="fragment">Software deployments</li>
+                <li class="fragment">Start of day/End of day</li>
+                <li class="fragment">Backup running</li>
             </ul>
 
         </section>
@@ -278,33 +339,54 @@
         </section>
 
         <section>
+            <h2>Why a story?</h2>
+
+            <ul>
+                <li class="fragment">Express meaning</li>
+                <li class="fragment">Easy to communicate</li>
+                <li class="fragment">Easy to remember</li>
+                <li class="fragment">Draw a morale</li>
+                <li class="fragment">Determine if relevant</li>
+            </ul>
+        </section>
+
+        <section>
             <h2>Build a story</h2>
 
             <ul>
-                <li>Metrics convey meaning</li>
-                <li>One thing at a time</li>
-                <li>More details mean a richer story</li>
-                <li>Draw meaning from your story</li>
+                <li class="fragment">Metrics convey meaning</li>
+                <li class="fragment">More details mean a richer story</li>
+                <li class="fragment">Draw meaning from your story</li>
             </ul>
         </section>
 
         <section>
-            <h2>Developer metrics</h2>
+            <h2>Development Story</h2>
 
-            <ul>
-                <li>Your test coverage goes up</li>
-                <li>Number of lines of code goes down</li>
-                <li>Possible stories:  Cruft removed.  Duplication removed.</li>
-                <li>Unlikely stories:  People are adding unit tests.  </li>
-            </ul>
+            <img src="images/CoverageUp.png">
         </section>
 
         <section>
-            <h2>Stories have perspective</h2>
+            <h2>Development Story</h2>
+
+            <img src="images/LinesDown.png">
+        </section>
+
+        <section>
+            <h2>Development Story</h2>
+
+            <img src="images/LinesDownCoverageUp.png">
+        </section>
+
+        <section>
+            <h2>What does it mean?</h2>
 
             <ul>
-                <li>There are two sides to each story</li>
-                <li>Find new perspective</li>
+                <li class="fragment">Amount of code is shrinking</li>
+                <li class="fragment">Percentage of testable code is growing</li>
+                <li class="fragment">Possible:  Removing cruft</li>
+                <li class="fragment">Possible:  Increasing DRY</li>
+                <li class="fragment">Unlikely:  New features are added</li>
             </ul>
         </section>
 
@@ -312,18 +394,102 @@
 
     <section data-background-image="images/foxShadow.png">
         <section>
-            <h2>Tooling</h2>
+            <h2>How do you build your story?</h2>
 
+            <ul>
+                <li class="fragment">Determine what you want</li>
+                <li class="fragment">Start with the details</li>
+                <li class="fragment">Start with the vision</li>
+                <li class="fragment">Gather your metrics</li>
+                <li class="fragment">Tell your story</li>
+            </ul>
         </section>
 
         <section>
-            <ul>
-                <li>Splunk, DataDog</li>
-                <li>ELK, Graylog</li>
-                <li>Log4J</li>
-                <li>Jira, VersionOne, Rally</li>
-            </ul>
+            <h2>Determine what you want</h2>
 
+            <ul>
+                <li class="fragment">Burning time</li>
+                <li class="fragment">Persuasion</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Start with the details</h2>
+
+            <ul>
+                <li class="fragment">Focus on a single metric</li>
+                <li class="fragment">Add more detail a little at a time</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Start with the vision</h2>
+
+            <ul>
+                <li class="fragment">Compelling reason</li>
+                <li class="fragment">Look for supporting details</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Gather your metrics</h2>
+
+            <ul>
+                <li class="fragment">Resource metrics from monitoring systems</li>
+                <li class="fragment">Work metrics from monitoring/logging</li>
+                <li class="fragment">Events from logging/ALM</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Tell your story</h2>
+
+            <ul>
+                <li class="fragment">Determine the style</li>
+                <li class="fragment">Determine the medium</li>
+                <li class="fragment">Publish it</li>
+            </ul>
+        </section>
+
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <section>
+            <h2>What to do with your story</h2>
+
+            <ul>
+                <li class="fragment">Share them</li>
+                <li class="fragment">Action on them</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Information radiator</h2>
+
+            <img src="images/InformationRadiator.png">
+        </section>
+
+        <section>
+            <h2>Information radiator</h2>
+
+            <img src="images/SonarDashboard.jpg">
+        </section>
+
+        <section>
+            <h2>ChatOps</h2>
+
+            <img src="images/ChatopsDashboard.png">
+        </section>
+
+        <section>
+            <h2>Action on your stories</h2>
+
+            <ul>
+                <li class="fragment">Setup an alert</li>
+                <li class="fragment">Setup a page</li>
+                <li class="fragment">Create a plan of action</li>
+            </ul>
         </section>
 
     </section>
@@ -333,6 +499,7 @@
 
         <ul>
             <li>https://www.datadoghq.com/blog/monitoring-101-collecting-data/</li>
+            <li>http://io9.gizmodo.com/how-to-comprehend-incomprehensibly-large-numbers-1531604757</li>
         </ul>
     </section>
 
