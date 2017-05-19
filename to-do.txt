@@ -1,10 +1,6 @@
 Between now and Copenhagen:
 
-1)  Slides for Google Home (2 nights)
-2)  Update Alexa workshop (2 nights)
-3)  Refactor AWS Grails talk (3 nights)
-4)  Finish Webhooks (1 night)
-5)  Add 20 minutes to monitoring talk  (2 nights)
-6)  Tweak Agile Austin slides  (1 night)
-7)  Agile Austin Conference
+1)  Update Alexa workshop (2 nights)
+2)  Refactor AWS Grails talk (3 nights)
+3)  Finish Webhooks (1 night)
 

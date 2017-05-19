@@ -6,7 +6,7 @@
 
     <title>Monitoring:  Finding your story</title>
 
-    <meta name="description" content="DevOps Monitoring:  Finding the Signal in the Noise">
+    <meta name="description" content="DevOps Monitoring:  Finding your story">
     <meta name="author" content="Lee Fox">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="css/reveal.min.css">
     <link rel="stylesheet" href="css/theme/fox.css" id="theme">
+    <link rel="stylesheet" href="css/logos.css">
 
     <!-- For syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -40,6 +41,10 @@
 
 <div class="reveal">
 
+<div class="inforLogo">
+    <img height="150" width="150" src="images/inforLogo.png">
+</div>
+
 <!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
     <section data-background-image="images/foxShadow.png">
@@ -50,12 +55,11 @@
         <p>
             <small><a href="http://twitter.com/FoxInATX">@FoxInATX</a></small>
         </p>
-
     </section>
 
     <section data-background-image="images/foxShadow.png">
 
-        <img height="300" src="images/foxes.jpg">
+        <img height="500" src="images/foxes.jpg">
     </section>
 
     <section data-background-image="images/foxShadow.png">
@@ -84,6 +88,61 @@
     </section>
 
     <section data-background-image="images/foxShadow.png">
+        <h2>Agenda</h2>
+
+        <ul>
+            <li class="fragment">What is DevOps?</li>
+            <li class="fragment">The problem with monitoring</li>
+            <li class="fragment">Dealing with the problem</li>
+        </ul>
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+        <section>
+            <h2>What is DevOps?</h2>
+            <ul>
+                <li class="fragment">Not a methodology</li>
+                <li class="fragment">Not a process</li>
+                <li class="fragment">Not something operations do</li>
+                <li class="fragment">Not something developers do</li>
+                <li class="fragment">Not a person</li>
+                <li class="fragment">Not a team</li>
+                <li class="fragment">Not a set of scripts</li>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>It's a philosophy</h2>
+
+        </section>
+
+        <section>
+            <h2>Addresses contention</h2>
+
+            <img src="images/devOpsContention.png">
+        </section>
+
+        <section>
+            <h2>Addresses contention</h2>
+
+            <img src="images/DevelopmentOperations.png">
+        </section>
+
+        <section>
+            <h2>Addresses contention</h2>
+
+            <img src="images/DevelopmentOperationsQa.png" height="500">
+        </section>
+
+        <section>
+            <h2>Addresses contention</h2>
+
+            <img src="images/DevelopmentOperationsQaSecurity.png" height="500">
+        </section>
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
         <section>
             <h2>Who knows what S.E.T.I. is?</h2>
 
@@ -109,7 +168,6 @@
                 <li class="fragment">Ideally to find at least one world</li>
             </ul>
         </section>
-
 
     </section>
 
@@ -194,47 +252,6 @@
 
     <section data-background-image="images/foxShadow.png">
         <section>
-            <h2>Some Vocabulary</h2>
-
-            <ul>
-                <li class="fragment">Monitoring</li>
-                <li class="fragment">Alerting</li>
-                <li class="fragment">Paging</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Monitoring</h2>
-            <ul>
-                <li class="fragment">Simply keeping a watch on your application or system</li>
-                <li class="fragment">Watching for metrics</li>
-                <li class="fragment">Watching for events</li>
-            </ul>
-
-        </section>
-
-        <section>
-            <h2>Alerting</h2>
-            <ul>
-                <li class="fragment">Sending some notification when a threshhold has been met.</li>
-                <li class="fragment">Can't have alerting without monitoring</li>
-            </ul>
-
-        </section>
-
-        <section>
-            <h2>Paging</h2>
-            <ul>
-                <li class="fragment">Actually notifying someone in person when an alert is generated</li>
-                <li class="fragment">Can't have paging without alerting</li>
-            </ul>
-
-        </section>
-
-    </section>
-
-    <section data-background-image="images/foxShadow.png">
-        <section>
             <h2>It's a problem</h2>
 
             <ul>
@@ -270,13 +287,43 @@
             <img src="images/TrumpInauguration.jpg">
         </section>
 
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
         <section>
-            <h2>Monitoring tools</h2>
+            <h2>Some Vocabulary</h2>
 
             <ul>
-                <li class="fragment">Monitoring tools</li>
-                <li class="fragment">Visualization tools</li>
-                <li class="fragment">Doesn't necessarily help understand the data</li>
+                <li class="fragment">Monitoring</li>
+                <li class="fragment">Alerting</li>
+                <li class="fragment">Paging</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Monitoring</h2>
+            <ul>
+                <li class="fragment">Simply keeping a watch on your application or system</li>
+                <li class="fragment">Watching for metrics</li>
+                <li class="fragment">Watching for events</li>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>Alerting</h2>
+            <ul>
+                <li class="fragment">Sending some notification when a threshhold has been met.</li>
+                <li class="fragment">Can't have alerting without monitoring</li>
+            </ul>
+
+        </section>
+
+        <section>
+            <h2>Paging</h2>
+            <ul>
+                <li class="fragment">Actually notifying someone in person when an alert is generated</li>
+                <li class="fragment">Can't have paging without alerting</li>
             </ul>
 
         </section>
@@ -387,6 +434,41 @@
                 <li class="fragment">Possible:  Removing cruft</li>
                 <li class="fragment">Possible:  Increasing DRY</li>
                 <li class="fragment">Unlikely:  New features are added</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Another example</h2>
+
+            Operational example
+        </section>
+
+        <section>
+            <h2>Operational Story</h2>
+
+            <img src="images/symmetricDirect.jpeg">
+        </section>
+
+        <section>
+            <h2>Operational Story</h2>
+
+            <img src="images/symmetricBastion.jpeg">
+        </section>
+
+        <section>
+            <h2>Operational Story</h2>
+
+            <img height="500" src="images/symmetricTogether.jpeg">
+        </section>
+
+        <section>
+            <h2>What does it mean?</h2>
+
+            <ul>
+                <li class="fragment">Debugging story</li>
+                <li class="fragment">Network problem if direct good, but not bastion</li>
+                <li class="fragment">Application problem if bastion good, but not direct</li>
+                <li class="fragment">How efficient is the Bastion if both are good</li>
             </ul>
         </section>
 
