@@ -1,6 +1,5 @@
 Between now and Copenhagen:
 
 1)  Update Alexa workshop (2 nights)
-2)  Refactor AWS Grails talk (3 nights)
-3)  Finish Webhooks (1 night)
+2)  Finish Webhooks (1 night)
 
