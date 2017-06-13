@@ -92,7 +92,7 @@
     <section data-background-image="images/foxShadow.png">
         <h2>Agenda</h2>
         <ul>
-            <li>What is ChatOps?</li>
+            <li class="fragment">What is ChatOps?</li>
             <li class="fragment">Benefits and how they apply</li>
             <li class="fragment">ChatOps Adoption</li>
             <li class="fragment">Technical Implementations</li>
@@ -104,7 +104,7 @@
             <h2>What is ChatOps?</h2>
 
             <ul>
-                <li>GitHub is generally credited for coining the term</li>
+                <li class="fragment">GitHub is generally credited for coining the term</li>
                 <li class="fragment">Leveraging chat software to support work flows</li>
                 <li class="fragment">Communicating with coworkers as well as the environment</li>
                 <li class="fragment">People, tools, systems, process...all come together</li>
@@ -158,7 +158,7 @@
         <section>
             <h2>Evolution of application architecture</h2>
             <ul>
-                <li>Terminal access, batch processing</li>
+                <li class="fragment">Terminal access, batch processing</li>
                 <li class="fragment">Desktop applications</li>
                 <li class="fragment">Client Server applications</li>
                 <li class="fragment">Web applications</li>
@@ -360,10 +360,82 @@
         </section>
 
         <section>
+            <h2>Red Alert</h2>
+            <table class="chatops">
+                <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/hulk.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Bruce Banner</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>We've got monitoring alerts all over the place.  We're under a DDOS attack.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/hulk.png">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Bruce Banner</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>!friday red alert</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday von Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td><font color="red">RED ALERT!  RED ALERT!</font></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday von Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>All ingress network traffic has been disallowed at the gateway.  Avengers.com now points to a static maintenance site.</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </section>
+
+    <section data-background-image="images/foxShadow.png">
+
+        <section>
             <h2>Why ChatOps?</h2>
 
             <ul>
-                <li>Build Culture</li>
+                <li class="fragment">Build Culture</li>
                 <li class="fragment">Improved Efficiency</li>
                 <li class="fragment">Increased collaboration</li>
                 <li class="fragment">Training</li>
@@ -380,7 +452,7 @@
             <h2>Build Culture</h2>
 
             <ul>
-                <li>Common interests</li>
+                <li class="fragment">Common interests</li>
                 <li class="fragment">Celebrations</li>
                 <li class="fragment">Common humor</li>
                 <li class="fragment">What is unique?</li>
@@ -893,7 +965,7 @@
             <h2>Improved Efficiency</h2>
 
             <ul>
-                <li>Better repeatability</li>
+                <li class="fragment">Better repeatability</li>
                 <li class="fragment">Self service</li>
             </ul>
         </section>
@@ -1259,7 +1331,7 @@
             <h2>Increased Collaboration</h2>
 
             <ul>
-                <li>Shared console</li>
+                <li class="fragment">Shared console</li>
                 <li class="fragment">Others can see when work was done</li>
                 <li class="fragment">Others see conversation happening around work</li>
             </ul>
@@ -1392,6 +1464,21 @@
             <h2>Production down</h2>
             <table class="chatops">
                 <tbody>
+                <tr class="chatops">
+                    <td class="imageCell">
+                        <img class="avatar" src="images/eva.jpg">
+                    </td>
+                    <td class="textCell">
+                        <table>
+                            <tr>
+                                <td><span class="chatUser">Friday von Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                            </tr>
+                            <tr>
+                                <td>Engine number 3 has stopped functioning.  Sensors have detected an explosion in the vacinity.
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
                 <tr class="chatops">
                     <td class="imageCell">
                         <img class="avatar" src="images/nickFury.png">
@@ -1581,13 +1668,13 @@
                     <td class="textCell">
                         <table>
                             <tr>
-                                <td><span class="chatUser">Friday von Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:08 PM</span></td>
+                                <td><span class="chatUser">Friday von Bot</span> <span class="botNotation">BOT</span> <span class="chatTime">2:10 PM</span></td>
                             </tr>
                             <tr>
                                 <td>Bids are in for <a href="">QUINJET-412</a>.<br>
                                 Average size:  8 story points<br>
-                                Largest size:  16 story points from @nfury<br>
-                                Smallest size:  2 story points from @tstark<br></td>
+                                Largest size:  16 story points from <a href="">Nick Fury</a><br>
+                                Smallest size:  2 story points from <a href="">Tony Stark</a><br></td>
                             </tr>
                         </table>
                     </td>
@@ -1603,7 +1690,7 @@
             <h2>Training</h2>
 
             <ul>
-                <li>Help ramp up easier</li>
+                <li class="fragment">Help ramp up easier</li>
                 <li class="fragment">Show live examples</li>
                 <li class="fragment">Central point of help and information</li>
             </ul>
@@ -1779,7 +1866,7 @@
             <h2>Security</h2>
 
             <ul>
-                <li>Bot functions allow a thin access to stacks/apps/services</li>
+                <li class="fragment">Bot functions allow a thin access to stacks/apps/services</li>
                 <li class="fragment">Bot functions can be audited</li>
                 <li class="fragment">Bot can be made aware of roles</li>
             </ul>
@@ -2134,7 +2221,7 @@
             <h2>Make It Fun</h2>
 
             <ul>
-                <li>What are the common themes in the office?</li>
+                <li class="fragment">What are the common themes in the office?</li>
                 <li class="fragment">What are the common jokes?</li>
             </ul>
         </section>
@@ -2195,7 +2282,7 @@
             <h2>Make It Pertinent</h2>
 
             <ul>
-                <li>Leverage tools currently in house</li>
+                <li class="fragment">Leverage tools currently in house</li>
                 <li class="fragment">Automate tasks currently performed</li>
                 <li class="fragment">Use the group's jargon and language</li>
             </ul>
@@ -2281,7 +2368,7 @@
     <section data-background-image="images/foxShadow.png">
         <h2>Recap</h2>
         <ul>
-            <li>Know what ChatOps is</li>
+            <li class="fragment">Know what ChatOps is</li>
             <li class="fragment">Benefits and how they apply across the organization</li>
             <li class="fragment">Both business and technical considerations for implementation</li>
             <li class="fragment">Some hints about the future of ChatOps to consider</li>
